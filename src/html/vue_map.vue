@@ -1,38 +1,52 @@
 <template>
      <div class="amap-wrapper">
-      <el-amap class="amap-box"         :center="center" :events="events"></el-amap>
+      <el-amap class="amap-box"  >
+       <el-amap-marker :events='events'  ></el-amap-marker>
+      </el-amap>
+    
     </div>
 </template>
 <script>
- let amapManager = new VueAMap.AMapManager();
  
-export default {
-  data() {
-    let self = this;
-    return {
-      center: [121.59996, 31.197646],
-        events: {
-            init(o) {
-              let marker = new AMap.Marker({
-                position: [121.59996, 31.197646]
-              });
+ 
+ 
 
-              marker.setMap(o);
-            }
-          }
-  
+module.exports = {
+  data() {
+    return {
+     events:{
+       
+        click(){ 
+          var mk = VueAMap.AMap()
+          console.log(mk)
+        } 
+     }
     };
+  },
+  created() {
+      
   },
   methods: {
     
-   
   },
   mounted: function() {
-   
+    
+    // this.aAmapMarker
   }
 };
 </script>
 <style scoped>
+.a {
+  width: 20px;
+  height: 20px;
+  background: red;
+  position: absolute;
+  bottom: 75px;
+  text-align: center;
+}
+.b {
+  margin-left: 45px;
+}
 .el-vue-amap-container,
 .el-vue-amap-container .el-vue-amap {
   height: 100vh;

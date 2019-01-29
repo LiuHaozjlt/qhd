@@ -6,9 +6,38 @@ import App from './App'
 import router from './router'
 import publi_css from './css/dlu.css'
 import VueAMap from 'vue-amap'
-import { lazyAMapApiLoaderInstance } from 'vue-amap';
+
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+ 
+
+
+// for (const key in VueAMap) {
+//   console.log(VueAMap)
+// }
+// for (const key in aAmapMarker) {
+//    console.log(aAmapMarker)
+// }
+ 
+ 
+//  for (const key in lazyAMapApiLoaderInstance) {
+//    console.log(key)
+//  }
+ 
 Vue.use(VueAMap)
-VueAMap.initAMapApiLoader()
+VueAMap.initAMapApiLoader({
+    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar',
+   'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor','AMap.Geolocation','AMap.Geocoder','AMap.AmapMarker'],
+ 
+ 
+},)
+ 
 // VueAMap.initAMapApiLoader()
 // key: 'your amap key',
 // plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar',
@@ -49,7 +78,10 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+ 
   components: {
+    
   App},
   template: '<App/>'
 })
+ 
