@@ -1,41 +1,38 @@
+
 <template>
-     <div class="amap-wrapper">
-      <el-amap class="amap-box"  >
-       <el-amap-marker :events='events'  ></el-amap-marker>
-      </el-amap>
-    
-    </div>
+  <div class="amap-wrapper">
+    <el-amap  class="amap-box">
+      <el-amap-marker></el-amap-marker>
+     </el-amap> 
+  </div>
 </template>
 <script>
  
- 
- 
-
-module.exports = {
+// import { AMapManager } from 'vue-amap'
+// let amapManager = new AMapManager();
+export default {
   data() {
     return {
-     events:{
-       
-        click(){ 
-          var mk = VueAMap.AMap()
-          console.log(mk)
-        } 
-     }
+     
     };
   },
-  created() {
-      
-  },
+  created() {},
   methods: {
-    
+    fn() {
+      // var amp =  VueAMap.AmapText;
+      // console.log(amp)
+    }
   },
   mounted: function() {
-    
-    // this.aAmapMarker
+    // this.fn()
+    console.log('mounted');
   }
 };
 </script>
-<style scoped>
+<style>
+.amap-box{
+   height: 30px;
+}
 .a {
   width: 20px;
   height: 20px;
@@ -51,4 +48,21 @@ module.exports = {
 .el-vue-amap-container .el-vue-amap {
   height: 100vh;
 }
+.curre_site {
+  width: 140px;
+  height: 20px;
+  font-size: 14px;
+  position: absolute;
+  bottom: 200px;
+}
 </style>
+
+<style type="text/css">
+	.biaozhu{
+		width: 143px;height: 20px;border: 2px solid red;position: absolute;top: 4px;left: 29px;
+	}
+</style>
+
+ 
+
+ 
