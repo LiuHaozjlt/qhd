@@ -1,37 +1,74 @@
 
 <template>
   <div class="amap-wrapper">
-    <el-amap  class="amap-box">
-      <el-amap-marker></el-amap-marker>
+    <el-amap  class="amap-box" :center='  center'   >
+      
+    <el-amap-marker     :events="events"    :draggable="draggable" > </el-amap-marker>
+      <el-amap-text  
+      v-for="text in texts" 
+
+      :center='text.center' 
+      :offset='text.offset' 
+      :text="text.text"   
+      :position="text.position" 
+      :events="text.events"></el-amap-text>
+   
      </el-amap> 
+     
   </div>
 </template>
 <script>
- 
 // import { AMapManager } from 'vue-amap'
 // let amapManager = new AMapManager();
 export default {
   data() {
     return {
-     
+      events: {
+        click: () => {
+          alert("click text");
+        },
+        dragend: e => {
+          console.log("---event---: dragend");
+          this.position = [e.lnglat.lng, e.lnglat.lat];
+        }
+      },
+      draggable: true,
+
+      center: [112.93886, 28.22778],
+
+      texts: [
+        {
+          offset: [0, 0],
+
+          center: [112.93886, 28.22778],
+          position: [112.93886, 28.22778],
+          text: "hello world",
+
+          events: {
+            click: () => {
+              alert("click text");
+            },
+            dragend: e => {
+              console.log("---event---: dragend");
+              this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
+            }
+          }
+        }
+      ]
     };
   },
   created() {},
-  methods: {
-    fn() {
-      // var amp =  VueAMap.AmapText;
-      // console.log(amp)
-    }
-  },
+
+  methods: {},
   mounted: function() {
     // this.fn()
-    console.log('mounted');
+    // console.log("mounted");
   }
 };
 </script>
 <style>
-.amap-box{
-   height: 30px;
+.amap-box {
+  height: 30px;
 }
 .a {
   width: 20px;
@@ -58,11 +95,17 @@ export default {
 </style>
 
 <style type="text/css">
-	.biaozhu{
-		width: 143px;height: 20px;border: 2px solid red;position: absolute;top: 4px;left: 29px;
-	}
+.biaozhu {
+  width: 143px;
+  height: 20px;
+  border: 2px solid red;
+  position: absolute;
+  top: 4px;
+  left: 29px;
+}
 </style>
 
  
 
+ 
  
