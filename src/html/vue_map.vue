@@ -3,15 +3,14 @@
   <div class="amap-wrapper">
     <el-amap  class="amap-box" :center='  center'   >
       
-    <el-amap-marker     :events="events"    :draggable="draggable" > </el-amap-marker>
+    <el-amap-marker :position="markerPos"     :events="events"    :draggable="draggable" > </el-amap-marker>
       <el-amap-text  
       v-for="text in texts" 
-
-      :center='text.center' 
       :offset='text.offset' 
       :text="text.text"   
       :position="text.position" 
-      :events="text.events"></el-amap-text>
+      :events='text.events'
+      ></el-amap-text>
    
      </el-amap> 
      
@@ -27,14 +26,23 @@ export default {
         click: () => {
           alert("click text");
         },
-        dragend: e => {
-          console.log("---event---: dragend");
-          this.position = [e.lnglat.lng, e.lnglat.lat];
+        dragstart: e => {
+          this.lastMarkerPos = [e.lnglat.lng, e.lnglat.lat]
+        },
+        dragging: e => {
+          var diffLng = e.lnglat.lng - this.lastMarkerPos[0]
+          var diffLat = e.lnglat.lat - this.lastMarkerPos[1]
+          this.texts.forEach(text => {
+            text.position = [text.position[0] + diffLng, text.position[1] + diffLat]
+          })
+          this.lastMarkerPos = [e.lnglat.lng, e.lnglat.lat]
         }
       },
       draggable: true,
 
       center: [112.93886, 28.22778],
+      markerPos: [112.93886, 28.22778],
+      lastMarkerPos: [112.93886, 28.22778],
 
       texts: [
         {
@@ -45,13 +53,16 @@ export default {
           text: "hello world",
 
           events: {
-            click: () => {
-              alert("click text");
+            fn:()=>{
+              console.log('ok')
             },
-            dragend: e => {
-              console.log("---event---: dragend");
-              this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
-            }
+            // click: () => {
+            //   alert("click text");
+            // },
+            // dragend: e => {
+            //   console.log("---event---: dragend");
+            //   this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
+            // }
           }
         }
       ]

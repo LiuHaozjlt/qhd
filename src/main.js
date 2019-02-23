@@ -4,48 +4,31 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App'
 import router from './router'
+import store from './store'
 import publi_css from './css/dlu.css'
-import VueAMap from 'vue-amap'
-
+import VueAMap from 'vue-amap';
+import mock from 'mockjs'
+import axius from 'axios'
+import lay from 'layui-layer'
  
- 
- 
- 
-
- 
-
- 
+// console.log(axius)
+// console.log(mock)
  
 
-
-// for (const key in VueAMap) {
-//   console.log(VueAMap)
-// }
-// for (const key in aAmapMarker) {
-//    console.log(aAmapMarker)
-// }
- 
- 
-//  for (const key in lazyAMapApiLoaderInstance) {
-//    console.log(key)
-//  }
- 
+// let amapManager = new AMapManager();
+// console.log(amapManager)
+Vue.use(lay)
 Vue.use(VueAMap)
-VueAMap.initAMapApiLoader({
-    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar',
-   'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor','AMap.Geolocation','AMap.Geocoder','AMap.AmapMarker'],
+Vue.prototype.axius = axius
+Vue.prototype.VueAMap = VueAMap
+Vue.prototype.mock = mock
+VueAMap.initAMapApiLoader({  
+  key:"c757e07cf2be665408ef5fb8c0dc4912",
+  plugin:  ['AMap.Autocomplete',  'AMap.PlaceSearch',  'AMap.Scale',  'AMap.OverView',  'AMap.ToolBar',    'AMap.MapType', 
+   'AMap.PolyEditor',  'AMap.CircleEditor', 'AMap.Geolocation', 'AMap.Geocoder'  ],
+  v: '1.4.4'
+}, )
  
- 
-},)
- 
-// VueAMap.initAMapApiLoader()
-// key: 'your amap key',
-// plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar',
-//   'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor', 'AMap.Geolocation', 'AMap.Geocoder'
-// ],
-// 默认高德 sdk 版本为 1.4.4
-// v: '1.4.4'
-// 
 let AlertOptions = {
   title: '', // 默认标题为 '提示'
   btn: {
@@ -69,7 +52,11 @@ let duration = {
   durtaion: 200,
   location: 'center|top ' // 如果不传递, 默认在底部, 如果传递, 就必须要有值
 }
-import { Alert, Confirm, Toast} from 'wc-messagebox'
+import {
+  Alert,
+  Confirm,
+  Toast
+} from 'wc-messagebox'
 import 'wc-messagebox/style.css'
 Vue.use(Alert, AlertOptions)
 Vue.use(Confirm, ConfirmOptions)
@@ -78,10 +65,9 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
- 
+  store,
   components: {
-    
-  App},
+    App,
+  },
   template: '<App/>'
 })
- 
