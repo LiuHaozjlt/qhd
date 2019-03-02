@@ -1,7 +1,7 @@
 <template>
 <div>
 <input type="text" v-model="inpt_val" @input="clik_val">
-<div class="list"       >
+<div class="list">
 <span v-if='fl'>{{ename_}}</span>
 
 </div>
