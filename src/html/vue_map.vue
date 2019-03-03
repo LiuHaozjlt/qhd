@@ -2,18 +2,19 @@
 <template>
   <div class="amap-wrapper">
     <el-amap  class="amap-box" :center='  center'   >
-      
+
     <el-amap-marker :position="markerPos"     :events="events"    :draggable="draggable" > </el-amap-marker>
-      <el-amap-text  
-      v-for="text in texts" 
-      :offset='text.offset' 
-      :text="text.text"   
-      :position="text.position" 
+      <el-amap-text
+      v-for="(text,index) in texts"
+      :offset='text.offset'
+      :text="text.text"
+      :position="text.position"
       :events='text.events'
+      :key="index"
       ></el-amap-text>
-   
-     </el-amap> 
-     
+
+     </el-amap>
+
   </div>
 </template>
 <script>
@@ -116,7 +117,7 @@ export default {
 }
 </style>
 
- 
 
- 
- 
+
+
+

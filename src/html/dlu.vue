@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <div class="test">测试</div>
-    <denluhead></denluhead>
-    <!-- <div class="denlu-logo"> -->
-    <denlulogo></denlulogo>
-    <denlufrm></denlufrm>
-    <!-- </div> -->
-    
+  <div class="login">
+    <div class="login-box">
+    <!-- <div class="test">测试</div> -->
+      <denluhead></denluhead>
+
+      <denlulogo></denlulogo>
+
+      <denlufrm></denlufrm>
+      <denlufangshi></denlufangshi>
+
+    </div> 
   </div>
   <!-- <div class="denlu-head">
     <img src="" alt="">
@@ -20,7 +23,7 @@
   <!-- </div> -->
   <!-- <div class="zhanghao_mima">
         <div>
-  <!-- <span>账号</span>-->
+  <!<span>账号</span>-->
   <!-- <select>
             <option value="volvo">Volvo</option>
             <option value="saab">Saab</option>
@@ -43,10 +46,13 @@
 </template>
 
 <script>
+import { Toast } from "mint-ui";
 import denluhead from "@/components/denlu-head";
 import denlulogo from "@/components/denlu-logo";
-import denlubtn from "@/components/denlu-btn";
+
 import denlufrm from "@/components/denlu-from";
+import denlufangshi from "@/components/denlu-fangshi";
+
 // import dropdown from '@/components/dropdown-menu';
 export default {
   data() {
@@ -57,35 +63,53 @@ export default {
   components: {
     denluhead,
     denlulogo,
-    denlubtn,
-    denlufrm,
-     
+    denlufangshi,
+    denlufrm
   },
-  // created() {
-  //   this.setvalue();
-  // },
-  methods: {
-    setvalue() {
-      console.log("222");
-      this.$router.push({ path: "/yzsjhm" });
-    }
-  },
-  mounted() {
-    console.log("mui");
-    // this.mui.alert('mui')
+  created() {
+    Toast({
+      message: "提示",
+
+      position: "bottom",
+      // duration: -1
+    });
   }
+  // methods: {
+  //   setvalue() {
+  //     console.log("222");
+  //     this.$router.push({ path: "/yzsjhm" });
+  //   }
+  // },
+  // mounted() {
+  //   console.log("mui");
+  //   // this.mui.alert('mui')
+  // }
 };
 </script>
 <style>
-.test {
-  /* width: 7.5rem; */
-  height: 3rem;
-  background: green;
-  line-height: 3rem;
-  font-size: 1rem;
-  color: #fff;
-  text-align: center;
+.mint-toast {
+  width: 7.8125rem;
+  border-radius: 0.625rem;
+  height: 0.625rem;
 }
+.mint-toast-text {
+  height: 0.625rem;
+  line-height: 0.625rem;
+  font-size: 0.6875rem;
+  font-family: PingFang-SC-Regular;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 1);
+}
+.login {
+  /* -top: 1.25rem; */
+}
+.login-box {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  /* padding-top: 1.25rem; */
+}
+
 .dlu a {
   font-size: 15px;
   font-family: PingFang-SC-Regular;

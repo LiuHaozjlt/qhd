@@ -13,9 +13,10 @@ import cjqy from '../html/chuangjianqiye.vue'
 // import tab from '../html/xiaoshou/xiaoshou_comp/tab'
 // import tab_b from '../html/xiaoshou/xiaoshou_comp/tab_b'
 // import tab_c from '../html/xiaoshou/xiaoshou_comp/tab_c'
-
+import test from '../html/test'
 import erjiliandong from '../html/erjiliandong.vue'
 import dizhi from '../html/dizhi.vue'
+import liuyan from '../html/liuyan.vue'
 import tishi from '../html/tishi.vue'
 import vue_m from '../html/vue_map.vue'
 import zimuhuadong from '../html/zimuhuadong.vue'
@@ -29,6 +30,11 @@ export default new Router({
     //   component:dropdownmenu
     // },
     {
+      path: '/test',
+      name: 'test',
+      component: test
+    },
+    {
       path: '/erjiliandong',
       name: 'erjiliandong',
       component: erjiliandong
@@ -37,6 +43,11 @@ export default new Router({
       path: '/dizhi',
       name: 'dizhi',
       component: dizhi
+    },
+    {
+      path: '/liuyan',
+      name: 'liuyan',
+      component: liuyan
     },
     {
       path: '/tishi',

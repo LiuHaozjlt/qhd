@@ -16,7 +16,7 @@ export default new Vuex.Store({
     mutations: {
       showLoading(state){
         state.showLoading = true;
-        setTimeout(()=>state.showLoading=false, 3000); // 3秒后自动调用隐藏loading的方法 ok 任何页面，使用this.$store.commit('showLoading')来呼出loading， hideLoading同理。 ok 
+        setTimeout(()=>state.showLoading=false, 3000);   
       },
       hideLoading(state){
         state.showLoading = false;

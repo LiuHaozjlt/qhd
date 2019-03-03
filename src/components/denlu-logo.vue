@@ -1,6 +1,6 @@
 <template>
   <div class="denlu-logo">
-    <img src alt>
+    <img src="../image/logo@2x.png">
   </div>
 </template>
 
@@ -8,12 +8,13 @@
 .denlu-logo{
     display:flex;
     justify-content: center;
+    margin-bottom:14%
+    /* margin-bottom: 4.09375rem; */
 }
 .denlu-logo img {
-  border: 1px solid blue;
-  background-color: red;
-  width: 30px;
-  height: 30px;
+  display:inline-block;
+  width:5.625rem;
+  height: 5.625rem;
 }
 </style>
 

@@ -3,7 +3,18 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  
+  <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+  <!-- <script>
+    function calculateRem(){
+      var html = document.querySelector('html');
+      var pageWidth = window.innerWidth;
+      html.style.fontSize = (pageWidth / 7.5) + 'px';
+    }
+    calculateRem();
+    window.onresize = calculateRem;
+  </script> -->
   <script src="https://unpkg.com/vue-amap/dist/index.js"></script>
   <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=c757e07cf2be665408ef5fb8c0dc4912"></script>
  

@@ -13,18 +13,19 @@ import mint from 'mint-ui'
 import eleui from 'element-ui'
 import eleuicss from '../node_modules/element-ui/lib/theme-chalk/index.css'
 import eleuiconp from '../node_modules/element-ui/lib/index.js'
-import  '../src/js/mui.js' 
+import  '../src/js/mui.js'
 import '../src/fonts/mui.ttf'
-import '../src/css/mui.css' 
+import '../src/css/mui.css'
 // //引入css
 import 'mint-ui/lib/style.css'
- 
+import '../src/css/publ-styl.css'
+
 
 // console.log(axius)
 // console.log(mock)
 // let amapManager = new AMapManager();
 // console.log(amapManager)
- 
+
 Vue.use(eleuiconp)
 Vue.use(eleuicss)
 Vue.use(eleui)
@@ -36,11 +37,11 @@ Vue.prototype.VueAMap = VueAMap
 Vue.prototype.mock = mock
 VueAMap.initAMapApiLoader({  
   key:"c757e07cf2be665408ef5fb8c0dc4912",
-  plugin:  ['AMap.Autocomplete',  'AMap.PlaceSearch',  'AMap.Scale',  'AMap.OverView',  'AMap.ToolBar',    'AMap.MapType', 
+  plugin:  ['AMap.Autocomplete',  'AMap.PlaceSearch',  'AMap.Scale',  'AMap.OverView',  'AMap.ToolBar',    'AMap.MapType',
    'AMap.PolyEditor',  'AMap.CircleEditor', 'AMap.Geolocation', 'AMap.Geocoder'  ],
   v: '1.4.4'
 }, )
- 
+
 // let AlertOptions = {
 //   title: '', // 默认标题为 '提示'
 //   btn: {
