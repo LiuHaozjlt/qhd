@@ -28,7 +28,7 @@ export default {
         this.fl = true;
       } else {
         this.fl = false;
-        console.log(this.fl);
+        // console.log(this.fl);
       }
     },
     value() {

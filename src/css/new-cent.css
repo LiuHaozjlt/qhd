@@ -1,0 +1,31 @@
+.new-cent {
+  font-size: 1.1875rem /* 19/16 */;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+
+}
+.new-cent-lef img{
+    width:.625rem /* 10/16 */;
+    height:.625rem /* 10/16 */;
+    display:inline-block;
+    border:.0625rem /* 1/16 */ solid red;
+    background-color: red;
+}
+.new-cent-lef-rit{
+    font-size:.625rem /* 10/16 */;
+    font-family:PingFang-SC-Medium;
+    font-weight:500;
+    color:rgba(153,153,153,1);
+}
+.new-cent-rit{
+    width:1.5rem /* 24/16 */;
+    height:.75rem /* 12/16 */;
+    font-size:8px /* 8/16 */;
+    font-family:PingFang-SC-Medium;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    background-color: #FF6762;
+    line-height: .75rem /* 12/16 */
+}
+ 

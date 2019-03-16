@@ -10,11 +10,12 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    // proxyTable: {},
 
     // Various Dev Server settings
     // host: 'localhost', // can be overwritten by process.env.HOST
-    host: '192.168.1.104',
+    // host: '192.168.31.108',
+    host: '192.168.1.112',
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
@@ -41,7 +42,17 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
 
-    cssSourceMap: true
+    cssSourceMap: true,
+
+    proxyTable: {
+      '/apis': {
+        target: 'http://192.168.0.25:8080/apis',
+        changeOrigin: true,
+        rewritePath: {
+          '^/apis': ''
+        }
+      }
+    }
   },
 
   build: {

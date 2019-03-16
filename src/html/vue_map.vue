@@ -1,82 +1,109 @@
 
 <template>
-  <div class="amap-wrapper">
-    <el-amap  class="amap-box" :center='  center'   >
-
-    <el-amap-marker :position="markerPos"     :events="events"    :draggable="draggable" > </el-amap-marker>
-      <el-amap-text
-      v-for="(text,index) in texts"
-      :offset='text.offset'
-      :text="text.text"
-      :position="text.position"
-      :events='text.events'
-      :key="index"
-      ></el-amap-text>
-
+  <div class="amap-wrapper ssssssssssssssssssss">
+    <el-amap :events="events" class="amap-box aaaaaaaaaaaaaaaaaaa" :center="center" :plugin="plugin" >
+      <el-amap-marker></el-amap-marker>
+      <!-- <el-amap-text class="ttttttttttttt"></el-amap-text> -->
+       <!-- <el-amap-text></el-amap-text>     -->
      </el-amap>
-
+     <div class="weizhi">
+       当前的位置是：<div class="dangqiang">{{address}}</div>
+     </div>
+     <div class="toolbar">
+        <span v-if="loaded">
+        location: lng = {{ lng }} lat = {{ lat }}
+        </span>
+        <span v-else>正在定位</span>
+    </div>
   </div>
 </template>
 <script>
-// import { AMapManager } from 'vue-amap'
+// import VueAMap from 'vue-amap'
+// import { AMapManager,AmapText } from 'vue-amap'
 // let amapManager = new AMapManager();
 export default {
-  data() {
+  data () {
+    let self = this
+
     return {
+      lng: 0,
+      lat: 0,
+      loaded: false,
+      center: [121.59996, 31.197646],
+      address: '',
       events: {
-        click: () => {
-          alert("click text");
-        },
-        dragstart: e => {
-          this.lastMarkerPos = [e.lnglat.lng, e.lnglat.lat]
-        },
-        dragging: e => {
-          var diffLng = e.lnglat.lng - this.lastMarkerPos[0]
-          var diffLat = e.lnglat.lat - this.lastMarkerPos[1]
-          this.texts.forEach(text => {
-            text.position = [text.position[0] + diffLng, text.position[1] + diffLat]
-          })
-          this.lastMarkerPos = [e.lnglat.lng, e.lnglat.lat]
+        click: (e) => {
+          let { lng, lat } = e.lnglat
+          self.lng = lng
+          self.lat = lat
+          // 这里通过高德 SDK 完成。
+          self.getGeocoder([lng, lat])
         }
       },
-      draggable: true,
-
-      center: [112.93886, 28.22778],
-      markerPos: [112.93886, 28.22778],
-      lastMarkerPos: [112.93886, 28.22778],
-
-      texts: [
-        {
-          offset: [0, 0],
-
-          center: [112.93886, 28.22778],
-          position: [112.93886, 28.22778],
-          text: "hello world",
-
-          events: {
-            fn:()=>{
-              console.log('ok')
-            },
-            // click: () => {
-            //   alert("click text");
-            // },
-            // dragend: e => {
-            //   console.log("---event---: dragend");
-            //   this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
-            // }
+      plugin: [{
+        pName: 'Geolocation',
+        events: {
+          init (o) {
+            // o 是高德地图定位插件实例
+            o.getCurrentPosition((status, result) => {
+              if (result && result.position) {
+                self.lng = result.position.lng
+                self.lat = result.position.lat
+                self.center = [self.lng, self.lat]
+                self.loaded = true
+                self.$nextTick()
+              }
+            })
           }
         }
-      ]
-    };
+      }]
+    }
+    // draggable: true,
+    // center: [112.93886, 28.22778],
+    // markerPos: [112.93886, 28.22778],
+    // lastMarkerPos: [112.93886, 28.22778],
+    // texts: [
+    //   {
+    //     offset: [0, 0],
+    //     center: [112.93886, 28.22778],
+    //     position: [112.93886, 28.22778],
+    //     text: "hello world",
+    //     events: {
+    //       fn:()=>{
+    //         console.log('ok')
+    //       },
+    // click: () => {
+    //   alert("click text");
+    // },
+    // dragend: e => {
+    //   console.log("---event---: dragend");
+    //   this.markers[0].position = [e.lnglat.lng, e.lnglat.lat];
+    // }
   },
-  created() {},
-
-  methods: {},
-  mounted: function() {
+  created () {},
+  methods: {
+    getGeocoder (val) {
+      let self = this
+      AMap.service('AMap.Geocoder', function () {
+        var geocoder = new AMap.Geocoder({
+          radius: 1000,
+          extensions: 'all',
+          city: '010'
+        })
+        geocoder.getAddress(val, function (status, result) {
+          if (status === 'complete' && result.info === 'OK') {
+            console.log(result)
+            self.address = result.regeocode.formattedAddress
+          }
+        })
+      })
+    }
+  },
+  mounted: function () {
     // this.fn()
     // console.log("mounted");
   }
-};
+}
 </script>
 <style>
 .amap-box {
@@ -104,9 +131,6 @@ export default {
   position: absolute;
   bottom: 200px;
 }
-</style>
-
-<style type="text/css">
 .biaozhu {
   width: 143px;
   height: 20px;
@@ -116,8 +140,3 @@ export default {
   left: 29px;
 }
 </style>
-
-
-
-
-

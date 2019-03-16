@@ -1,13 +1,11 @@
 <template>
 <div class="qita-fangshi">
      <div class="qt-left"></div>
-  
     <div class="qita-denlu">
         其他方式登录
     </div>
      <div class="qt-right"></div>
 </div>
- 
 </template>
 <style>
 .qita-fangshi {
@@ -26,7 +24,6 @@
 .qt-left,
 .qt-right {
   width: 100%;
-  border-bottom: .00625rem solid #CECECE;
+  border-bottom: 1px solid #CECECE;
 }
 </style>
-

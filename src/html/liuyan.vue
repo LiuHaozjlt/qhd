@@ -1,8 +1,6 @@
 <template>
-
   <div>
-
-    <mt-button size="large" @click="popup4">下侧弹出Popup</mt-button >
+    <mt-button size="large" @click="popup4">下侧弹出Popup</mt-button>
     <mt-popup
       v-model="popupVisible4"
       position="bottom"
@@ -16,7 +14,6 @@
        <mt-button class="bottom" @click="sendEvent" size="large" type="primary">发送</mt-button>
     </mt-popup>
   </div>
-
 </template>
 <script>
 

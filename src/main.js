@@ -1,46 +1,65 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+
+// for (const key in Vue) {
+//   console.log(key)
+
+// }
 import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import store from './store'
 import publi_css from './css/dlu.css'
+
+// for (const key in VueAMap) {
+//   console.log(VueAMap)
+
+// }
 import VueAMap from 'vue-amap'
+import vant from 'vant'
+import 'vant/lib/index.css'
 import mock from 'mockjs'
 import axius from 'axios'
 import mint from 'mint-ui'
 import eleui from 'element-ui'
 import eleuicss from '../node_modules/element-ui/lib/theme-chalk/index.css'
 import eleuiconp from '../node_modules/element-ui/lib/index.js'
-import  '../src/js/mui.js'
+import '../src/js/mui.js'
 import '../src/fonts/mui.ttf'
 import '../src/css/mui.css'
+import '../src/css/new-cent.css'
 // //引入css
 import 'mint-ui/lib/style.css'
 import '../src/css/publ-styl.css'
 
+let bus = new Vue()
+Vue.prototype.bus = bus
 
 // console.log(axius)
 // console.log(mock)
 // let amapManager = new AMapManager();
 // console.log(amapManager)
-
+Vue.use(vant)
+Vue.use(VueAMap)
 Vue.use(eleuiconp)
 Vue.use(eleuicss)
 Vue.use(eleui)
-Vue.use(VueAMap)
+// Vue.use(VueAMap)
 Vue.use(mint)
+Vue.prototype.Vue = Vue
 Vue.prototype.mint = mint
 Vue.prototype.axius = axius
 Vue.prototype.VueAMap = VueAMap
 Vue.prototype.mock = mock
-VueAMap.initAMapApiLoader({  
-  key:"c757e07cf2be665408ef5fb8c0dc4912",
-  plugin:  ['AMap.Autocomplete',  'AMap.PlaceSearch',  'AMap.Scale',  'AMap.OverView',  'AMap.ToolBar',    'AMap.MapType',
-   'AMap.PolyEditor',  'AMap.CircleEditor', 'AMap.Geolocation', 'AMap.Geocoder'  ],
-  v: '1.4.4'
-}, )
+
+VueAMap.initAMapApiLoader({
+  key: 'c757e07cf2be665408ef5fb8c0dc4912',
+  // eslint-disable-next-line standard/array-bracket-even-spacing
+  plugin: ['AMap.Autocomplete', 'AMap.Geocoder', 'AMap.Geolocation' ]
+  // v: '1.4.4'
+})
+// 具体地址服务
 
 // let AlertOptions = {
 //   title: '', // 默认标题为 '提示'
@@ -78,9 +97,5 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  store,
-  components: {
-    App,
-  },
-  template: '<App/>'
+  store
 })

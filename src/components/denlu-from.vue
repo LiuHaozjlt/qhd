@@ -2,49 +2,53 @@
   <div class="denlu-frm">
     <form class="mui-input-group">
       <div class="mui-input-warp">
-          <div class="mui-input-row">
-          
+          <div class="mui-input-row">          
             <img src="../image/wo@2x.png" alt="">
             <dropdown></dropdown>
             <input type="text" class="mui-input-clear denlu" placeholder="手机号">
           </div>
       </div>
       <div class="mui-input-warp">
-          <div class="mui-input-row" v-if='isPasswordLogin'>
-            <img src="../image/suo@2x.png" alt="">
-            <input type="password" class="mui-input-password denlu" placeholder="请输入密码">
-          </div>
-           <div class="mui-input-row" v-else> 
+           <div class="mui-input-row" v-if="!isPasswordLogin || !isLogin"> 
             <img src="../image/suo@2x.png" alt="">
             <input type="password" class="mui-input-password denlu" placeholder="请输入验证码">
             <span v-if="!isSending" @click="send">获取验证码</span>
-            <span v-else class="timer">{{timeCount}} s</span>
+            <span v-else-if="timeCount > -1" class="timer">{{timeCount }} s</span>
+            <span v-else @click="reSend">重新发送</span>
+          </div>
+          <div class="mui-input-row" v-if='isPasswordLogin || !isLogin'>
+            <img src="../image/suo@2x.png" alt="">
+            <input type="password" class="mui-input-password denlu" placeholder="请输入密码">
           </div>
       </div>
       <div class="mui-input-warp">
-          <denlubtn></denlubtn>
+          <denlubtn :is-login="isLogin"></denlubtn>
       </div>
-      <div class="mui-input-warp">
+      <div class="mui-input-warp" v-if="isLogin">
       <div class="mui-button-row">
-        <div  class="dx-yanzhen" @click="changeLoginType">{{ isPasswordLogin ? "短信验证" : "密码验证"}}</div> 
-        <div   class="wj-mima">忘记密码</div>
+        <div  class="dx-yanzhen" @click="changeLoginType">{{ isPasswordLogin ? "短信验证" : "账号登录"}}</div> 
+        <div   class="wj-mima" v-if="isPasswordLogin" @click="onForget">忘记密码</div>
       </div>
       </div>
     </form>
-    <div class="mui-input-warp">
-
-   
+    <div class="mui-input-warp">  
      <qitafangshi></qitafangshi>
-      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import dropdown from "@/components/dropdown-menu";
 import denlubtn from "@/components/denlu-btn";
-import qitafangshi from "@/components/qita-fangshi";
+
 import { setInterval, clearInterval } from 'timers';
 export default {
+  props: {
+    isLogin: {
+      type: Boolean,
+      default: true
+    }
+  },
   data(){
     return{
       isSending: false,
@@ -54,9 +58,9 @@ export default {
   },
   components: {
     dropdown,
-    denlubtn,
-    qitafangshi
+    denlubtn  
   },
+  
   methods:{
     changeLoginType(){
        this.isPasswordLogin = !this.isPasswordLogin;
@@ -64,14 +68,19 @@ export default {
     send() {
       this.isSending = true;
       let timer = setInterval(() => {
-        if(this.timer === 0) {
+        if(this.timeCount === -1) {
           clearInterval(timer);
-          this.isSending = false;
-          this.timeCount = 56;
         } else {
           this.timeCount --;
         }
       }, 1000);
+    },
+    reSend() {
+      this.timeCount = 56;
+      this.send();
+    },
+    onForget() {
+      this.$emit("forget");
     }
   }
 };

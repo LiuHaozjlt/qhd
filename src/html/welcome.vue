@@ -1,6 +1,8 @@
 <template>
   <div class="wlcm-text-cont">
-    <div>欢迎页</div>
+    <div>
+      <img src="../../src/image/qdt.png" alt="">
+    </div>
   </div>
 </template>
 

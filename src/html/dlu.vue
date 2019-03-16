@@ -2,89 +2,56 @@
   <div class="login">
     <div class="login-box">
     <!-- <div class="test">测试</div> -->
-      <denluhead></denluhead>
-
+      <denluhead :is-login="isLogin" :is-forget="isForget" @change="changeLogin"></denluhead>
       <denlulogo></denlulogo>
-
-      <denlufrm></denlufrm>
-      <denlufangshi></denlufangshi>
-
-    </div> 
+      <denlufrm :is-login="isLogin" @forget="isForget = true"></denlufrm>
+      <denluxuanxiang v-if="isLogin"></denluxuanxiang>
+    </div>
   </div>
-  <!-- <div class="denlu-head">
-    <img src="" alt="">
-    <a href>注册</a>
-  </div>-->
-  <!-- <div class="logo"> -->
-  <!-- <div class="logo-title">
-          <div>登录</div>
-          <div>注册</div>
-  </div>-->
-  <!-- </div> -->
-  <!-- <div class="zhanghao_mima">
-        <div>
-  <!<span>账号</span>-->
-  <!-- <select>
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-  </select>-->
-  <!-- <div>
-            <input type="text" placeholder="请填写手机号码">
-          </div>
-        </div>
-  <div>-->
-  <!-- <span>密码</span> -->
-  <!-- <input type="text" placeholder="输入密码">
-        </div>
-      </div>
-      <div class="denglu">登录</div>
-      <router-link to="/yzsjhm">
-        <div class="yanzhenma" @click="setvalue()">使用验证码登录</div>
-  </router-link>-->
 </template>
 
 <script>
-import { Toast } from "mint-ui";
-import denluhead from "@/components/denlu-head";
-import denlulogo from "@/components/denlu-logo";
-
-import denlufrm from "@/components/denlu-from";
-import denlufangshi from "@/components/denlu-fangshi";
-
+import { Toast } from 'mint-ui'
+import denluhead from '@/components/denlu-head'
+import denlulogo from '@/components/denlu-logo'
+import denlufrm from '@/components/denlu-from'
+import denluxuanxiang from '@/components/denlu-xuanxiang'
 // import dropdown from '@/components/dropdown-menu';
 export default {
-  data() {
+  data () {
     return {
       // num: ["user", "pass"]
-    };
+      isLogin: true,
+      isForget: false
+    }
   },
   components: {
     denluhead,
     denlulogo,
-    denlufangshi,
+    denluxuanxiang,
     denlufrm
   },
-  created() {
+  created () {
     Toast({
-      message: "提示",
-
-      position: "bottom",
+      message: '提示',
+      position: 'bottom'
       // duration: -1
-    });
+    })
+  },
+  methods: {
+    // setvalue() {
+    //   console.log("222");
+    //   this.$router.push({ path: "/yzsjhm" });
+    // },
+    changeLogin (val) {
+      this.isLogin = val
+    }
   }
-  // methods: {
-  //   setvalue() {
-  //     console.log("222");
-  //     this.$router.push({ path: "/yzsjhm" });
-  //   }
-  // },
   // mounted() {
   //   console.log("mui");
   //   // this.mui.alert('mui')
   // }
-};
+}
 </script>
 <style>
 .mint-toast {
@@ -129,5 +96,3 @@ export default {
   outline: none;
 } */
 </style>
-
-

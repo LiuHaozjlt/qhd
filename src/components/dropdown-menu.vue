@@ -1,30 +1,33 @@
 <template>
-  <el-dropdown trigger="click">
+  <el-dropdown trigger="click" style="position:relative" placement="bottom-start">
     <span class="el-dropdown-link">
        <img :src="selected.icon" alt="">
       <!-- <el-icon-picture></el-icon-picture> -->
-      <!-- {{text}} -->
-     
+      <!-- {{text}} -->    
         +
-         <div class="shuzi"  >
- {{selected.text}}
-      </div>
-     
+      <div class="shuzi">
+        {{selected.text}}
+      </div>    
       <i class="el-icon--right" v-if="tr">
         <img src="../image/jtt.png" alt="">
       </i>
       <i class="el-icon--right" v-if="fl"></i>
     </span>
-    <el-dropdown-menu slot="dropdown">
-      <!-- <span class="el-icon-picture"></span> -->
-      <el-dropdown-item v-for="item in list" :key="item.text"  class="" command="a" @click.native="select(item)">
+    <el-dropdown-menu class="juz" slot="dropdown"  >
+      <!-- <el-dropdown-item v-for="item in list" :key="item.text"  class="" command="a" @click.native="select(item)" style="position:absolute:left:0"> -->
+      <el-dropdown-item v-for="item in list" :key="item.text"  class="" command="a" @click.native="select(item)"  >
         <img :src="item.icon" alt="">
-         <span>+{{ item.text }}</span>
-        </el-dropdown-item>
+        <span>+{{ item.text }}</span>
+      </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
 </template>
 <style>
+.juz{
+  /* position:static;
+  left:static;
+  top:static; */
+}
 .el-dropdown {
   width: 54%;
   left: .9375rem;
